@@ -1,17 +1,22 @@
-# coding=utf-8
-# This is a sample Python script.
+def robot_move(moves):
+    x = 0
+    y = 0
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+    for dir, dist in moves:
+        if dir == 'N':
+            y += dist
+        elif dir == 'E':
+            x += dist
+        elif dir == 'S':
+            y -= dist
+        elif dir == 'W':
+            x -= dist
+        else:
+            raise Exception("Valid Directions: (N,E,S,W) - Your input: " + str(dir))
 
+    return x, y
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print("Hi, {0}".format(name))  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# --- Test cases ---
+# print(robot_move([])) => Assert (0, 0)
+# print(robot_move([('N', 5), ('S', 3)])) => Assert (0, 2)
+# print(robot_move([('Z', -10)])) => Assert Invalid Direciton Error
